@@ -44,7 +44,7 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
 
           <div className="relative flex h-full flex-col">
             <div className="flex h-[72px] shrink-0 items-center justify-between px-5 md:h-[84px]">
-              <Logo markClassName="h-9 w-9" showTagline className="text-white" />
+              <Logo markClassName="h-8" showTagline className="text-white" />
               <button
                 type="button"
                 onClick={onClose}

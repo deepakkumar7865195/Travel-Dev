@@ -79,7 +79,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 1.45, ease: EASE_OUT }}
         >
-          <Logo markClassName="h-14 w-14 md:h-16 md:w-16" showTagline className="text-white" textClassName="ml-1" />
+          <Logo markClassName="h-12 md:h-14" showTagline className="text-white" textClassName="ml-1" />
         </motion.div>
 
         <h1 className="mt-8 max-w-4xl text-[clamp(2.5rem,7.4vw,5.6rem)] font-extrabold uppercase leading-[0.94] tracking-[-0.045em] text-white">

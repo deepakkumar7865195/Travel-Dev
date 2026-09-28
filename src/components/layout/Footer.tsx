@@ -47,7 +47,7 @@ export default function Footer() {
         <div className="grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="max-w-sm">
             <Link href="/" aria-label="TRAVEL DEV home">
-              <Logo markClassName="h-12 w-12" showTagline className="text-white" />
+              <Logo markClassName="h-10" showTagline className="text-white" />
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-white/55">
               A travel technology company building seamless journeys — from Kolkata to

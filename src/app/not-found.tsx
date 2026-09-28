@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="grain absolute inset-0 -z-10" />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_30%,rgb(23_105_170_/_0.35),transparent_70%)]" />
 
-      <LogoMark className="h-16 w-16" />
+      <LogoMark className="h-14" />
       <p className="eyebrow mt-8 text-azure-300">
         <span className="h-px w-8 bg-flare" aria-hidden />
         Error 404

@@ -63,7 +63,7 @@ export default function Navbar() {
         <div className="container-x flex h-[72px] items-center justify-between gap-6 md:h-[84px]">
           <Link href="/" aria-label="TRAVEL DEV home" className="shrink-0">
             <Logo
-              markClassName="h-9 w-9 md:h-10 md:w-10"
+              markClassName="h-8 md:h-9"
               showTagline
               className={cn(
                 "transition-colors duration-300",
