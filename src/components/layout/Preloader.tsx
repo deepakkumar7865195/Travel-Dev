@@ -70,7 +70,7 @@ export default function Preloader() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="relative"
             >
-              <LogoMark className="h-20 w-20 drop-shadow-[0_18px_40px_rgba(0,0,0,0.5)]" />
+              <LogoMark className="h-16 drop-shadow-[0_18px_40px_rgba(0,0,0,0.5)]" />
             </motion.div>
 
             <div className="relative text-center">
@@ -80,7 +80,8 @@ export default function Preloader() {
                 transition={{ delay: 0.25, duration: 0.6 }}
                 className="font-display text-lg font-extrabold uppercase tracking-[0.4em] text-white"
               >
-                Travel <span className="text-flare-400">Dev</span>
+                <span className="text-[#F3040D]">Travel</span>
+                <span className="-ml-[0.4em] text-[#0B60D4]">Dev</span>
               </motion.p>
               <motion.p
                 initial={{ opacity: 0 }}

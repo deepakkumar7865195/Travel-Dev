@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
-  icons: { icon: "/icon.svg" },
+  icons: { icon: "/icon.png" },
 };
 
 export const viewport: Viewport = {
@@ -86,8 +86,8 @@ const orgSchema = {
       legalName: siteConfig.legalName,
       slogan: siteConfig.tagline,
       url: siteConfig.url,
-      logo: { "@type": "ImageObject", url: `${siteConfig.url}/images/logo.svg` },
-      image: `${siteConfig.url}/images/logo.svg`,
+      logo: { "@type": "ImageObject", url: `${siteConfig.url}/images/logo.png` },
+      image: `${siteConfig.url}/images/logo.png`,
       description: siteConfig.description,
       email: siteConfig.email,
       telephone: siteConfig.phone,

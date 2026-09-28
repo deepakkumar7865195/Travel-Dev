@@ -2,8 +2,8 @@ import sharp from "sharp";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-const logo = await readFile(path.resolve("assets/logo.svg"), "utf8");
-const encoded = `data:image/svg+xml;base64,${Buffer.from(logo).toString("base64")}`;
+const logo = await readFile(path.resolve("assets/logo-mark.png"));
+const encoded = `data:image/png;base64,${logo.toString("base64")}`;
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
@@ -32,7 +32,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.
   <path d="M120 470 C 340 300, 640 240, 900 300" fill="none" stroke="#FF6B6F" stroke-opacity="0.5" stroke-width="3" stroke-dasharray="4 16" stroke-linecap="round"/>
   <circle cx="120" cy="470" r="9" fill="#FFFFFF"/>
 
-  <image href="${encoded}" xlink:href="${encoded}" x="100" y="120" width="150" height="150"/>
+  <image href="${encoded}" xlink:href="${encoded}" x="90" y="119" width="200" height="102"/>
 
   <text x="290" y="196" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="74" font-weight="800" letter-spacing="4" fill="#FFFFFF">TRAVEL <tspan fill="#FF6B6F">DEV</tspan></text>
   <text x="292" y="246" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="30" font-weight="600" letter-spacing="16" fill="#8CC6F2">LET&#39;S GO</text>

@@ -6,6 +6,7 @@ import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { EASE_OUT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/ui/Logo";
 
 export type Crumb = { label: string; href?: string };
 
@@ -129,6 +130,15 @@ export default function PageHeader({
             {description}
           </motion.p>
         )}
+
+        <motion.div
+          className="mt-10 flex justify-start lg:justify-end"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.28, ease: EASE_OUT }}
+        >
+          <Logo markClassName="h-9" showTagline className="text-white" />
+        </motion.div>
       </div>
     </header>
   );

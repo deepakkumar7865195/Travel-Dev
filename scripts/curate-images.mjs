@@ -80,8 +80,8 @@ async function run() {
       .toFile(dst);
   }
 
-  await copyFile(path.resolve("assets/logo.svg"), path.join(OUT, "logo.svg"));
-  await copyFile(path.resolve("assets/logo.svg"), path.resolve("src/app/icon.svg"));
+  await copyFile(path.resolve("assets/logo.png"), path.join(OUT, "logo.png"));
+  await copyFile(path.resolve("assets/logo-mark.png"), path.join(OUT, "logo-mark.png"));
 
   console.log(`curated ${names.length} images`);
 }
