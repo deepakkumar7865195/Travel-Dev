@@ -21,9 +21,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
+# env files — never commit credentials
 .env*
 !.env.example
+.env.local
+.env*.local
 
 # typescript
 *.tsbuildinfo

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Loader2, ArrowRight } from "lucide-react";
@@ -16,6 +16,7 @@ type Fields = {
   date: string;
   travellers: string;
   message: string;
+  website: string;
 };
 
 const empty: Fields = {
@@ -26,6 +27,7 @@ const empty: Fields = {
   date: "",
   travellers: "2",
   message: "",
+  website: "",
 };
 
 const fieldClass =
@@ -40,13 +42,17 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
+  const [formError, setFormError] = useState<string | null>(null);
+  const [receipt, setReceipt] = useState({ name: "", email: "" });
+  const startedAt = useRef(Date.now());
 
   const set = (key: keyof Fields) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setValues((v) => ({ ...v, [key]: e.target.value }));
     setErrors((err) => ({ ...err, [key]: undefined }));
+    setFormError(null);
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const next: Partial<Record<keyof Fields, string>> = {};
     if (values.name.trim().length < 2) next.name = "Please tell us your name.";
@@ -55,14 +61,54 @@ export default function ContactForm() {
     if (!values.message.trim()) next.message = "Tell us a little about the trip.";
 
     setErrors(next);
+    setFormError(null);
     if (Object.keys(next).length > 0) return;
 
     setState("sending");
-    window.setTimeout(() => setState("sent"), 1100);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Contact-Form": "1" },
+        body: JSON.stringify({ ...values, startedAt: startedAt.current }),
+      });
+      const data = (await res.json().catch(() => null)) as
+        | { ok?: boolean; error?: string; errors?: Partial<Record<keyof Fields, string>> }
+        | null;
+
+      if (!res.ok || !data?.ok) {
+        if (data?.errors) setErrors((prev) => ({ ...prev, ...data.errors }));
+        setFormError(data?.error ?? "Something went wrong. Please try again.");
+        setState("idle");
+        return;
+      }
+
+      setReceipt({ name: values.name.trim(), email: values.email.trim() });
+      setValues(empty);
+      setState("sent");
+    } catch {
+      setFormError("Network error. Please check your connection and try again.");
+      setState("idle");
+    }
   };
 
   return (
     <form onSubmit={submit} noValidate className="rounded-[1.75rem] border border-navy/10 bg-white p-6 shadow-soft md:p-8">
+      {/* Honeypot — invisible to people, tempting for bots. */}
+      <div
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", top: 0, width: "1px", height: "1px", overflow: "hidden" }}
+      >
+        <label htmlFor="contact-website">Leave this field empty</label>
+        <input
+          id="contact-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={values.website}
+          onChange={set("website")}
+        />
+      </div>
       <AnimatePresence mode="wait" initial={false}>
         {state === "sent" ? (
           <motion.div
@@ -81,13 +127,14 @@ export default function ContactForm() {
             </motion.span>
             <h3 className="h3 mt-6">Message received</h3>
             <p className="lede mt-3 max-w-sm">
-              Thanks {values.name.split(" ")[0]} — a trip designer will reply to{" "}
-              <span className="font-semibold text-navy">{values.email}</span> within 24 hours.
+              Thanks {receipt.name.split(" ")[0]} — a trip designer will reply to{" "}
+              <span className="font-semibold text-navy">{receipt.email}</span> within 24 hours.
             </p>
             <button
               type="button"
               onClick={() => {
                 setValues(empty);
+                setFormError(null);
                 setState("idle");
               }}
               className="mt-7 text-sm font-semibold text-azure-600 transition hover:text-navy"
@@ -167,6 +214,17 @@ export default function ContactForm() {
                 </Field>
               </div>
             </div>
+
+            {formError && (
+              <motion.p
+                role="alert"
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-5 rounded-2xl border border-flare/30 bg-flare/10 px-4 py-3 text-sm font-medium text-flare-600"
+              >
+                {formError}
+              </motion.p>
+            )}
 
             <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
               <p className="max-w-xs text-xs leading-relaxed text-navy/45">
