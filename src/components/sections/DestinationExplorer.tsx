@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Search, LayoutGrid, Rows3, SlidersHorizontal, X } from "lucide-react";
 import DestinationCard from "@/components/cards/DestinationCard";
 import CTAButton from "@/components/ui/CTAButton";
-import { destinations, destinationCategories } from "@/lib/data/destinations";
+import { indiaDestinations, destinationCategories } from "@/lib/data/destinations";
 import { cn } from "@/lib/utils";
 import type { DestinationCategory } from "@/lib/types";
 
@@ -35,7 +35,7 @@ export default function DestinationExplorer() {
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = destinations.filter((d) => {
+    let list = indiaDestinations.filter((d) => {
       const matchesTab = type === "All" || d.categories.includes(type as DestinationCategory);
       const matchesQuery =
         !q ||

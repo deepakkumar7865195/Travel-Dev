@@ -389,3 +389,5 @@ export function getDestination(slug: string) {
 }
 
 export const featuredDestinations = destinations.filter((d) => d.featured);
+
+export const indiaDestinations = destinations.filter((d) => d.country.endsWith("India"));

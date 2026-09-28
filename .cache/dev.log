@@ -15,3 +15,21 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
  GET / 200 in 1761ms
  GET / 200 in 10431ms
  ○ Compiling /packages ...
+ ✓ Compiled /destinations in 13.2s (1677 modules)
+ GET /packages 200 in 14913ms
+ GET /destinations 200 in 10431ms
+ GET /packages 200 in 349ms
+ GET /destinations 200 in 132ms
+ GET /packages 200 in 172ms
+ ○ Compiling /trip-planner ...
+ ✓ Compiled /trip-planner in 2.3s (1695 modules)
+ GET /trip-planner 200 in 2704ms
+ ○ Compiling /experiences ...
+ ✓ Compiled /experiences in 1622ms (1708 modules)
+ GET /experiences 200 in 1931ms
+ GET / 200 in 233ms
+ GET /destinations 200 in 289ms
+Image with src "/images/dest-switzerland.jpg" is using quality "78" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET /destinations 200 in 2114ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
