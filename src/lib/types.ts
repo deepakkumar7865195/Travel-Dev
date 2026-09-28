@@ -75,3 +75,24 @@ export interface Experience {
   imageAlt: string;
   count: number;
 }
+
+export interface BlogSection {
+  heading: string;
+  paragraphs: string[];
+  bullets?: string[];
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  tags: string[];
+  publishedAt: string;
+  updated?: string;
+  author: string;
+  readMins: number;
+  cover: string;
+  coverAlt: string;
+  sections: BlogSection[];
+}
