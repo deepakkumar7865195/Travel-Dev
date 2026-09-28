@@ -35,6 +35,7 @@ export default function CTABand({
             description={description}
             align="center"
             as="h2"
+            light
             className="max-w-3xl"
           />
         </Reveal>

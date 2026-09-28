@@ -13,6 +13,8 @@ type Props = {
   descClassName?: string;
   as?: "h1" | "h2";
   highlight?: string;
+  /** Render on a dark surface. */
+  light?: boolean;
 };
 
 export default function SectionHeading({
@@ -24,6 +26,7 @@ export default function SectionHeading({
   descClassName,
   as = "h2",
   highlight,
+  light = false,
 }: Props) {
   const centered = align === "center";
 
@@ -33,7 +36,8 @@ export default function SectionHeading({
         <Reveal delay={0.02} y={18}>
           <span
             className={cn(
-              "eyebrow text-azure-600",
+              "eyebrow",
+              light ? "text-white" : "text-azure-600",
               centered && "justify-center"
             )}
           >
@@ -47,12 +51,18 @@ export default function SectionHeading({
         as={as}
         text={title}
         highlight={highlight}
-        className={cn("mt-5", align === "center" && "text-center")}
+        className={cn(
+          "mt-5",
+          align === "center" && "text-center",
+          light && "text-white"
+        )}
       />
 
       {description && (
         <Reveal delay={0.14}>
-          <p className={cn("lede mt-6", descClassName)}>{description}</p>
+          <p className={cn("lede mt-6", light && "!text-white", descClassName)}>
+            {description}
+          </p>
         </Reveal>
       )}
     </div>
