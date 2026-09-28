@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Linkedin, Youtube, Twitter, Phone, Mail, MapPin } from "lucide-react";
+import { Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import Newsletter from "./Newsletter";
 import { navLinks, siteConfig } from "@/lib/site";
@@ -7,10 +7,8 @@ import { featuredDestinations } from "@/lib/data/destinations";
 import { experiences } from "@/lib/data/experiences";
 
 const socialIcons = {
+  facebook: Facebook,
   instagram: Instagram,
-  linkedin: Linkedin,
-  youtube: Youtube,
-  twitter: Twitter,
 } as const;
 
 export default function Footer() {

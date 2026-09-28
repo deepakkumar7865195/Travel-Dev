@@ -20,10 +20,8 @@ export const siteConfig = {
     country: "India",
   },
   socials: [
-    { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-    { label: "X", href: "https://x.com", icon: "twitter" },
-    { label: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
-    { label: "YouTube", href: "https://youtube.com", icon: "youtube" },
+    { label: "Facebook", href: "https://www.facebook.com/Viraldev23/", icon: "facebook" },
+    { label: "Instagram", href: "https://www.instagram.com/traveldev.in/", icon: "instagram" },
   ] as const,
 };
 

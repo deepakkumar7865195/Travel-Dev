@@ -4,16 +4,18 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, ArrowUpRight, Instagram, Linkedin, Youtube } from "lucide-react";
+import { X, ArrowUpRight, Facebook, Instagram } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { navLinks, siteConfig } from "@/lib/site";
 import { EASE_OUT } from "@/lib/motion";
 
-const socials = [
-  { label: "Instagram", href: "https://instagram.com", Icon: Instagram },
-  { label: "LinkedIn", href: "https://linkedin.com", Icon: Linkedin },
-  { label: "YouTube", href: "https://youtube.com", Icon: Youtube },
-];
+const socialIcons = { facebook: Facebook, instagram: Instagram };
+
+const socials = siteConfig.socials.map((s) => ({
+  label: s.label,
+  href: s.href,
+  Icon: socialIcons[s.icon],
+}));
 
 export default function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const pathname = usePathname();

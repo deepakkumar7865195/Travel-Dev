@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Phone, Mail, MapPin, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import ContactForm from "@/components/sections/ContactForm";
 import MapSection from "@/components/sections/MapSection";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const icons = { instagram: Instagram, linkedin: Linkedin, youtube: Youtube, twitter: Twitter };
+const icons = { facebook: Facebook, instagram: Instagram };
 
 export default function ContactPage() {
   const cards = [
