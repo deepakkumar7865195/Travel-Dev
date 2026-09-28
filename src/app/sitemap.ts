@@ -3,6 +3,7 @@ import { siteConfig } from "@/lib/site";
 import { destinations } from "@/lib/data/destinations";
 import { packages } from "@/lib/data/packages";
 import { experiences } from "@/lib/data/experiences";
+import { posts } from "@/lib/data/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -12,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/destinations",
     "/packages",
     "/experiences",
+    "/blog",
+    "/blog/all",
     "/about",
     "/contact",
   ].map((path) => ({
@@ -42,5 +45,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...destinationRoutes, ...packageRoutes, ...experienceRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
+    url: `${siteConfig.url}/blog/${p.slug}`,
+    lastModified: new Date(p.updated ?? p.publishedAt),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...destinationRoutes,
+    ...packageRoutes,
+    ...experienceRoutes,
+    ...blogRoutes,
+  ];
 }

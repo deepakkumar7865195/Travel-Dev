@@ -51,7 +51,7 @@ export default async function BlogPostPage({
   const wordCount = post.sections.reduce(
     (n, s) =>
       n +
-      s.paragraphs.join(" ").split(/\s+/).length +
+      (s.paragraphs ?? []).join(" ").split(/\s+/).length +
       (s.bullets?.join(" ").split(/\s+/).length ?? 0),
     0
   );
@@ -114,7 +114,7 @@ export default async function BlogPostPage({
                     {section.heading}
                   </h2>
 
-                  {section.paragraphs.map((p) => (
+                  {(section.paragraphs ?? []).map((p) => (
                     <p key={p.slice(0, 40)} className="mt-4 text-[1rem] leading-[1.75] text-navy/75">
                       {p}
                     </p>

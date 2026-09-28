@@ -78,7 +78,7 @@ export interface Experience {
 
 export interface BlogSection {
   heading: string;
-  paragraphs: string[];
+  paragraphs?: string[];
   bullets?: string[];
 }
 
