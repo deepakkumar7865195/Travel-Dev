@@ -1,0 +1,17 @@
+
+> travel-dev@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.5.26
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.51:3000
+
+ ✓ Starting...
+ ✓ Ready in 3.4s
+ ○ Compiling / ...
+ ✓ Compiled / in 6s (1623 modules)
+Image with src "/images/hero.jpg" is using quality "80" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET / 200 in 1761ms
+ GET / 200 in 10431ms
+ ○ Compiling /packages ...
