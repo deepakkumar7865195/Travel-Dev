@@ -2,9 +2,9 @@ import { MapPin, Navigation, Clock } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import { siteConfig } from "@/lib/site";
 
-const lat = 22.5697;
-const lon = 88.4306;
-const bbox = `88.4150,22.5570,88.4470,22.5830`;
+const lat = 22.6059;
+const lon = 88.4111;
+const bbox = `88.4011,22.5999,88.4211,22.6119`;
 const embed = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${lat}%2C${lon}`;
 const directions = `https://www.openstreetmap.org/directions?from=&to=${lat}%2C${lon}`;
 

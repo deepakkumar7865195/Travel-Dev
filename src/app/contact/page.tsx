@@ -26,7 +26,7 @@ export default function ContactPage() {
     {
       icon: Phone,
       label: "Phone",
-      value: siteConfig.phone,
+      value: siteConfig.phones.map((p) => p.label).join(" / "),
       href: `tel:${siteConfig.phoneHref}`,
       note: "Mon–Sat, 10:00–19:00 IST",
     },

@@ -28,6 +28,12 @@ export interface Destination {
 export type PackageType = "Domestic" | "International";
 export type TravelStyle = "Budget" | "Couple" | "Family" | "Luxury" | "Adventure";
 
+export interface PackageDay {
+  day: number;
+  title: string;
+  detail: string;
+}
+
 export interface TourPackage {
   slug: string;
   title: string;
@@ -50,6 +56,13 @@ export interface TourPackage {
     meals: string;
     activities: string;
   };
+  /** Full day-by-day plan, when published. */
+  plan?: PackageDay[];
+  inclusions?: string[];
+  exclusions?: string[];
+  bestFor?: string;
+  famousFor?: string;
+  highlights?: string[];
   featured?: boolean;
 }
 

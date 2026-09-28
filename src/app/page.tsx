@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/ui/Marquee";
-import FeaturedDestinations from "@/components/sections/FeaturedDestinations";
+import FeaturedPackage from "@/components/sections/FeaturedPackage";
+import FeaturedPackages from "@/components/sections/FeaturedPackages";
 import WhyBand from "@/components/sections/WhyBand";
 import ExperiencePreview from "@/components/sections/ExperiencePreview";
 import Testimonials from "@/components/sections/Testimonials";
@@ -30,7 +31,8 @@ export default function HomePage() {
         </div>
       </div>
 
-      <FeaturedDestinations />
+      <FeaturedPackage />
+      <FeaturedPackages />
       <WhyBand />
       <ExperiencePreview />
       <Testimonials />

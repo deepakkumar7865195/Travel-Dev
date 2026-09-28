@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/destinations",
     "/packages",
-    "/trip-planner",
     "/experiences",
     "/about",
     "/contact",

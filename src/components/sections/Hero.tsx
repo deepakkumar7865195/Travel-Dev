@@ -112,7 +112,7 @@ export default function Hero() {
           <CTAButton href="/destinations" variant="flare" size="lg">
             Explore Destinations
           </CTAButton>
-          <CTAButton href="/trip-planner" variant="glass" size="lg" arrow={false}>
+          <CTAButton href="/contact" variant="glass" size="lg" arrow={false}>
             Plan My Trip
           </CTAButton>
         </Reveal>

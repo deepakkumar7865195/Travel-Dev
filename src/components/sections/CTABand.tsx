@@ -8,7 +8,7 @@ export default function CTABand({
   title = "Your next unforgettable journey starts here",
   description = "Tell us the dates and the dream — we'll send back a route, a quote and a real human within 24 hours.",
   primary = { label: "Start Planning", href: "/contact" },
-  secondary = { label: "Try the trip planner", href: "/trip-planner" },
+  secondary = { label: "See ready packages", href: "/packages" },
 }: {
   eyebrow?: string;
   title?: string;

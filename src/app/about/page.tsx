@@ -251,7 +251,7 @@ export default function AboutPage() {
         eyebrow={`${siteConfig.name} · ${siteConfig.tagline}`}
         title="Ready to see what we'd build for you?"
         description="One conversation is enough for us to sketch a route, a budget and a rough date range."
-        primary={{ label: "Plan Your Trip", href: "/trip-planner" }}
+        primary={{ label: "Plan Your Trip", href: "/packages" }}
         secondary={{ label: "Get in touch", href: "/contact" }}
       />
     </>

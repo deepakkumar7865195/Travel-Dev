@@ -107,7 +107,7 @@ export default function DestinationsPage() {
         eyebrow="Plan it"
         title="Found the one? Let's price it out"
         description="Share your dates and travellers — we'll come back with a route, hotels and a single transparent quote."
-        primary={{ label: "Start Planning", href: "/trip-planner" }}
+        primary={{ label: "Start Planning", href: "/packages" }}
         secondary={{ label: "Talk to a human", href: "/contact" }}
       />
     </>

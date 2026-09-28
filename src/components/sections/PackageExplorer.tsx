@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X, GitCompareArrows, Check } from "lucide-react";
 import PackageCard from "@/components/cards/PackageCard";
+import PackageDetail from "@/components/sections/PackageDetail";
 import CTAButton from "@/components/ui/CTAButton";
 import { packages } from "@/lib/data/packages";
 import { formatINR, cn } from "@/lib/utils";
@@ -43,6 +44,35 @@ export default function PackageExplorer() {
   const [sort, setSort] = useState<Sort>("popular");
   const [compare, setCompare] = useState<string[]>([]);
   const [panelOpen, setPanelOpen] = useState(false);
+  const [activeSlug, setActiveSlug] = useState<string | null>(null);
+
+  const scrollToDetail = () => {
+    window.requestAnimationFrame(() => {
+      document.getElementById("package-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
+  useEffect(() => {
+    const syncHash = (scroll: boolean) => {
+      const slug = decodeURIComponent(window.location.hash.replace("#", ""));
+      const match = packages.find((p) => p.slug === slug);
+      setActiveSlug(match ? match.slug : null);
+      if (match && scroll) scrollToDetail();
+    };
+
+    const onHash = () => syncHash(true);
+
+    syncHash(true);
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  const active = activeSlug ? packages.find((p) => p.slug === activeSlug) ?? null : null;
+
+  const clearActive = () => {
+    setActiveSlug(null);
+    window.history.replaceState(null, "", window.location.pathname);
+  };
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -202,6 +232,10 @@ export default function PackageExplorer() {
               pkg={p}
               onCompare={toggleCompare}
               compared={compare.includes(p.slug)}
+              onOpen={(slug) => {
+                setActiveSlug(slug);
+                scrollToDetail();
+              }}
             />
           ))}
         </AnimatePresence>
@@ -219,6 +253,24 @@ export default function PackageExplorer() {
           </p>
         </motion.div>
       )}
+
+      {/* selected package detail */}
+      <div id="package-detail" className="scroll-mt-24">
+        <AnimatePresence mode="wait">
+          {active && (
+            <motion.div
+              key={active.slug}
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-8"
+            >
+              <PackageDetail pkg={active} onClose={clearActive} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* comparison bar */}
       <AnimatePresence>
@@ -307,7 +359,7 @@ export default function PackageExplorer() {
                       {compared.map((p) => (
                         <th key={p.slug} className="border-b border-navy/10 px-3 pb-4 align-bottom">
                           <span className="block text-sm font-bold text-navy">{p.title}</span>
-                          <span className="mt-1 block text-xs font-medium text-azure-600">
+                          <span className="mt-2 inline-block rounded-full bg-navy px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-white">
                             {p.route}
                           </span>
                         </th>
@@ -342,7 +394,7 @@ export default function PackageExplorer() {
                       <th className="py-4" />
                       {compared.map((p) => (
                         <td key={p.slug} className="px-3 py-4">
-                          <CTAButton href="/trip-planner" size="sm" variant="primary">
+                          <CTAButton href="/contact" size="sm" variant="primary">
                             Request
                           </CTAButton>
                         </td>

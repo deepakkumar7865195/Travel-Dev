@@ -107,7 +107,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3">
             <CTAButton
-              href="/trip-planner"
+              href="/contact"
               size="sm"
               variant={scrolled ? "primary" : "glass"}
               className="hidden md:inline-flex"

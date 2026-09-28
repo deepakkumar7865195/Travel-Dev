@@ -83,7 +83,7 @@ export default function ExperiencesPage() {
         eyebrow="Your turn"
         title="Tell us the feeling — we'll find the place"
         description="Pick an experience and our designers will come back with a route, dates and a real quote."
-        primary={{ label: "Start Planning", href: "/trip-planner" }}
+        primary={{ label: "Start Planning", href: "/packages" }}
         secondary={{ label: "Talk to us", href: "/contact" }}
       />
     </>

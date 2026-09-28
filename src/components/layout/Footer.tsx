@@ -55,11 +55,19 @@ export default function Footer() {
             </p>
 
             <ul className="mt-6 space-y-2.5 text-sm text-white/60">
-              <li>
-                <a href={`tel:${siteConfig.phoneHref}`} className="flex items-center gap-2.5 transition hover:text-white">
-                  <Phone className="h-4 w-4 text-azure-400" strokeWidth={1.7} />
-                  {siteConfig.phone}
-                </a>
+              <li className="flex items-start gap-2.5">
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-azure-400" strokeWidth={1.7} />
+                <span className="flex flex-col gap-1">
+                  {siteConfig.phones.map((p) => (
+                    <a
+                      key={p.href}
+                      href={`tel:${p.href}`}
+                      className="transition hover:text-white"
+                    >
+                      {p.label}
+                    </a>
+                  ))}
+                </span>
               </li>
               <li>
                 <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2.5 transition hover:text-white">
@@ -111,7 +119,6 @@ export default function Footer() {
                 href: `/experiences#${e.slug}`,
               })),
               { label: "Tour Packages", href: "/packages" },
-              { label: "Trip Planner", href: "/trip-planner" },
             ]}
           />
         </div>

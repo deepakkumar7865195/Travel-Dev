@@ -5,14 +5,18 @@ export const siteConfig = {
   description:
     "TRAVEL DEV is a modern travel technology company crafting unforgettable destinations, seamless travel experiences and journeys designed around you.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.traveldev.in",
-  email: "hello@traveldev.in",
-  phone: "+91 98300 12345",
-  phoneHref: "+919830012345",
+  email: "Traveldev347@gmail.com",
+  phone: "8709394023",
+  phoneHref: "+918709394023",
+  phones: [
+    { label: "8709394023", href: "+918709394023" },
+    { label: "8272956267", href: "+918272956267" },
+  ],
   address: {
-    line1: "Level 4, Cyber Heights, Sector V",
+    line1: "Mohana Apartment, Gouri Nath Shastri Sarani",
     city: "Kolkata",
     region: "West Bengal",
-    postal: "700091",
+    postal: "700055",
     country: "India",
   },
   socials: [
@@ -27,7 +31,6 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "Destinations", href: "/destinations" },
   { label: "Packages", href: "/packages" },
-  { label: "Trip Planner", href: "/trip-planner" },
   { label: "Experiences", href: "/experiences" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },

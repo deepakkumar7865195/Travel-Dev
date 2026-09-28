@@ -124,7 +124,7 @@ export default function ContactForm() {
                   type="tel"
                   value={values.phone}
                   onChange={set("phone")}
-                  placeholder="+91 98300 00000"
+                  placeholder="+91 98765 43210"
                   className={cn(fieldClass, errors.phone && "border-flare")}
                   autoComplete="tel"
                 />
@@ -200,9 +200,17 @@ export default function ContactForm() {
 
       <p className="mt-6 border-t border-navy/10 pt-5 text-xs text-navy/45">
         Prefer talking? Call{" "}
-        <a href={`tel:${siteConfig.phoneHref}`} className="font-semibold text-navy underline-offset-4 hover:underline">
-          {siteConfig.phone}
-        </a>{" "}
+        {siteConfig.phones.map((p, i) => (
+          <span key={p.href}>
+            {i > 0 && " / "}
+            <a
+              href={`tel:${p.href}`}
+              className="font-semibold text-navy underline-offset-4 hover:underline"
+            >
+              {p.label}
+            </a>
+          </span>
+        ))}{" "}
         — it rings on a real desk.
       </p>
     </form>

@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Hotel, Bus, UtensilsCrossed, Ticket, CalendarDays, Star, Wallet } from "lucide-react";
+import { Hotel, Bus, UtensilsCrossed, Ticket, CalendarDays, Star, Wallet, Check, X } from "lucide-react";
 import CTAButton from "@/components/ui/CTAButton";
 import Reveal from "@/components/ui/Reveal";
 import WordReveal from "@/components/ui/WordReveal";
 import { featuredPackage } from "@/lib/data/packages";
+import { exclusionList, inclusionList, planDays } from "@/components/sections/PackageDetail";
 import { formatINR } from "@/lib/utils";
 
 const inclusions = [
@@ -63,8 +64,8 @@ export default function FeaturedPackage() {
           {/* CONTENT RIGHT */}
           <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12">
             <Reveal y={18}>
-              <span className="eyebrow text-azure-600">
-                <span className="h-px w-8 bg-flare" aria-hidden />
+              <span className="inline-flex items-center gap-2 rounded-full bg-navy px-3.5 py-2 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-white">
+                <span className="h-px w-6 bg-flare" aria-hidden />
                 {pkg.route}
               </span>
             </Reveal>
@@ -113,7 +114,7 @@ export default function FeaturedPackage() {
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <CTAButton href="/trip-planner" variant="primary" size="lg">
+                  <CTAButton href="/contact" variant="primary" size="lg">
                     Plan this trip
                   </CTAButton>
                   <CTAButton href="/packages" variant="outline" size="lg" arrow={false}>
@@ -131,6 +132,89 @@ export default function FeaturedPackage() {
               className="mt-6 h-px origin-left bg-gradient-to-r from-azure-500 via-flare to-transparent"
             />
           </div>
+        </div>
+
+        {/* DAY-BY-DAY + INCLUSIONS / EXCLUSIONS */}
+        <div className="grid gap-8 border-t border-navy/10 bg-cloud-50/60 p-7 md:p-10 lg:grid-cols-2">
+          <div>
+            <div className="flex items-center justify-between gap-4">
+              <h4 className="font-display text-lg font-extrabold tracking-[-0.02em] text-navy md:text-xl">
+                Day-by-day itinerary
+              </h4>
+              <span className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-navy/55">
+                <CalendarDays className="h-3.5 w-3.5 text-azure-600" strokeWidth={2} />
+                {planDays(pkg).length} days
+              </span>
+            </div>
+
+            <ol className="relative mt-5 space-y-4 border-l border-dashed border-navy/20 pl-6">
+              {planDays(pkg).map((d) => (
+                <li key={d.day} className="relative">
+                  <span className="absolute -left-6 top-1 grid h-7 w-7 -translate-x-1/2 place-items-center rounded-full bg-navy text-[0.7rem] font-bold text-white ring-4 ring-cloud-50">
+                    {d.day}
+                  </span>
+                  <span className="block text-[0.95rem] font-bold text-navy">{d.title}</span>
+                  {d.detail && (
+                    <span className="mt-1 block text-[0.87rem] leading-relaxed text-navy/65">
+                      {d.detail}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="space-y-7">
+            <div>
+              <h4 className="flex items-center gap-2 font-display text-lg font-extrabold tracking-[-0.02em] text-navy md:text-xl">
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-azure-600 text-white">
+                  <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                </span>
+                Inclusions
+              </h4>
+              <ul className="mt-4 space-y-2.5">
+                {inclusionList(pkg).map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 rounded-xl bg-white p-3 text-[0.88rem] leading-relaxed text-navy/75"
+                  >
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-azure-600" strokeWidth={2.6} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="flex items-center gap-2 font-display text-lg font-extrabold tracking-[-0.02em] text-navy md:text-xl">
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-flare text-white">
+                  <X className="h-3.5 w-3.5" strokeWidth={3} />
+                </span>
+                Exclusions
+              </h4>
+              <ul className="mt-4 space-y-2.5">
+                {exclusionList(pkg).map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 rounded-xl bg-white p-3 text-[0.88rem] leading-relaxed text-navy/70"
+                  >
+                    <X className="mt-0.5 h-4 w-4 shrink-0 text-flare" strokeWidth={2.6} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-navy/10 px-7 py-6 md:px-10">
+          <p className="font-display text-xl font-extrabold text-navy md:text-2xl">
+            Starts at {formatINR(pkg.price)}/-{" "}
+            <span className="text-sm font-bold text-navy/55">Per Person</span>
+          </p>
+          <CTAButton href="/packages#kolkata-to-kashmir" variant="outline" size="md">
+            See full details
+          </CTAButton>
         </div>
       </div>
     </section>

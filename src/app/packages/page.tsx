@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Tour Packages From Kolkata — Journeys Made For You",
   description:
-    "Premium tour packages from Kolkata to Darjeeling, Sikkim, Goa, Rajasthan, Kerala, Kashmir and international holidays — with hotels, transport, meals and activities included.",
+    "Tour packages from Kolkata — Kashmir, Darjeeling & Gangtok, Thailand, Bali, Vietnam, Japan and Dubai — with day-by-day itineraries, inclusions, exclusions and per-person prices.",
   alternates: { canonical: "/packages" },
   openGraph: {
     title: "Tour Packages | TRAVEL DEV",
@@ -54,7 +54,7 @@ export default function PackagesPage() {
       <PageHeader
         eyebrow="Tour packages"
         title="JOURNEYS MADE FOR YOU"
-        description="Seven signature routes, each pressure-tested by our own team — filter by budget, duration and style, then compare side by side."
+        description="Eight signature routes, each pressure-tested by our own team — filter by budget, duration and style, compare side by side, then open any card for the full day-by-day plan."
         crumbs={[{ label: "Packages", href: "/packages" }]}
         image="/images/dest-kashmir.jpg"
         imageAlt="Shikara boat crossing a turquoise Himalayan lake"
@@ -68,7 +68,7 @@ export default function PackagesPage() {
         title="None of these quite right? We build from scratch"
         description="Give us a destination, a date range and a budget. You'll get a route back within one working day."
         primary={{ label: "Request a custom trip", href: "/contact" }}
-        secondary={{ label: "Use the planner", href: "/trip-planner" }}
+        secondary={{ label: "Browse destinations", href: "/destinations" }}
       />
     </>
   );

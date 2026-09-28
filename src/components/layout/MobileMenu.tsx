@@ -105,7 +105,7 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
                 className="mt-8 flex flex-col gap-5"
               >
                 <Link
-                  href="/trip-planner"
+                  href="/contact"
                   onClick={onClose}
                   className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-flare px-8 text-[0.95rem] font-semibold text-white transition hover:bg-flare-600"
                 >
@@ -114,12 +114,17 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
                 </Link>
 
                 <div className="flex items-center justify-between gap-4 text-white/60">
-                  <a
-                    href={`tel:${siteConfig.phoneHref}`}
-                    className="text-sm font-medium hover:text-white"
-                  >
-                    {siteConfig.phone}
-                  </a>
+                  <span className="flex flex-col gap-1">
+                    {siteConfig.phones.map((p) => (
+                      <a
+                        key={p.href}
+                        href={`tel:${p.href}`}
+                        className="text-sm font-medium hover:text-white"
+                      >
+                        {p.label}
+                      </a>
+                    ))}
+                  </span>
                   <div className="flex items-center gap-4">
                     {socials.map(({ label, href, Icon }) => (
                       <a

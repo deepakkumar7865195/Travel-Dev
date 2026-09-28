@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     "Kerala tour",
     "Kashmir package",
     "international holidays",
-    "trip planner",
     "TRAVEL DEV",
   ],
   applicationName: siteConfig.name,
@@ -90,7 +89,7 @@ const orgSchema = {
       image: `${siteConfig.url}/images/logo.png`,
       description: siteConfig.description,
       email: siteConfig.email,
-      telephone: siteConfig.phone,
+      telephone: siteConfig.phoneHref,
       address: {
         "@type": "PostalAddress",
         streetAddress: siteConfig.address.line1,

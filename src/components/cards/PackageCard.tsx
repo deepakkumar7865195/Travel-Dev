@@ -13,10 +13,14 @@ export default function PackageCard({
   pkg,
   onCompare,
   compared = false,
+  onOpen,
+  badge,
 }: {
   pkg: TourPackage;
   onCompare?: (slug: string) => void;
   compared?: boolean;
+  onOpen?: (slug: string) => void;
+  badge?: string;
 }) {
   return (
     <motion.article
@@ -34,9 +38,16 @@ export default function PackageCard({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-navy-950/25" />
 
-        <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-navy">
-          {pkg.days} Days · {pkg.nights} Nights
-        </span>
+        <div className="absolute left-4 top-4 flex flex-col items-start gap-2">
+          {badge && (
+            <span className="rounded-full bg-flare px-3 py-1.5 text-[0.66rem] font-bold uppercase tracking-[0.14em] text-white shadow-[0_8px_20px_-10px_rgb(233_30_37_/_0.95)]">
+              {badge}
+            </span>
+          )}
+          <span className="rounded-full bg-white px-3 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-navy">
+            {pkg.days} Days · {pkg.nights} Nights
+          </span>
+        </div>
 
         <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-navy/70 px-2.5 py-1 text-[0.7rem] font-semibold text-white backdrop-blur-md">
           <RatingStars rating={pkg.rating} starClass="h-3 w-3" />
@@ -44,7 +55,7 @@ export default function PackageCard({
         </span>
 
         <div className="absolute inset-x-0 bottom-0 p-5">
-          <span className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-flare-400">
+          <span className="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-white [text-shadow:0_1px_8px_rgb(4_15_26_/_0.6)]">
             {pkg.route}
           </span>
           <h3 className="mt-1 font-display text-2xl font-bold leading-tight text-white">
@@ -107,6 +118,7 @@ export default function PackageCard({
             )}
             <Link
               href={`/packages#${pkg.slug}`}
+              onClick={() => onOpen?.(pkg.slug)}
               className="inline-flex h-10 items-center gap-1.5 rounded-full bg-navy px-4 text-[0.8rem] font-semibold text-white transition group-hover:bg-azure-600"
             >
               View Package
