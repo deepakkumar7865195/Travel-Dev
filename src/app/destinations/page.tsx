@@ -8,18 +8,18 @@ import HorizontalScroll from "@/components/ui/HorizontalScroll";
 import DestinationExplorer from "@/components/sections/DestinationExplorer";
 import DestinationSlide from "@/components/cards/DestinationSlide";
 import CTABand from "@/components/sections/CTABand";
-import { destinations } from "@/lib/data/destinations";
+import { indiaDestinations } from "@/lib/data/destinations";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Explore The World — 24 Curated Destinations",
+  title: "Explore India — 8 Curated Destinations",
   description:
-    "Filter, search and explore TRAVEL DEV destinations across India, Asia, Europe and the Middle East — with best time to visit, real ratings and starting prices.",
+    "Filter, search and explore TRAVEL DEV destinations across India — from Kashmir and Kerala to Rajasthan, Goa and Sikkim — with best time to visit, real ratings and starting prices.",
   alternates: { canonical: "/destinations" },
   openGraph: {
-    title: "Explore The World | TRAVEL DEV",
+    title: "Explore India | TRAVEL DEV",
     description:
-      "Curated destinations across India, Asia, Europe and the Middle East with honest pricing.",
+      "Curated Indian destinations with honest pricing — mountains, backwaters, deserts and beaches.",
     url: `${siteConfig.url}/destinations`,
   },
 };
@@ -38,7 +38,7 @@ function ExplorerFallback() {
 }
 
 export default function DestinationsPage() {
-  const touristDests = destinations.slice(0, 12).map((d) => ({
+  const touristDests = indiaDestinations.map((d) => ({
     "@type": "TouristDestination",
     name: d.name,
     description: d.blurb,
@@ -64,11 +64,11 @@ export default function DestinationsPage() {
 
       <PageHeader
         eyebrow="Destinations"
-        title="EXPLORE THE WORLD"
-        description="Twenty-four places we know street by street — filter by region or mood, compare starting prices, and open the one that feels right."
+        title="EXPLORE INDIA"
+        description="Eight places we know street by street — filter by region or mood, compare starting prices, and open the one that feels right."
         crumbs={[{ label: "Destinations", href: "/destinations" }]}
-        image="/images/dest-switzerland.jpg"
-        imageAlt="Turquoise alpine lake ringed by autumn mountains"
+        image="/images/dest-kashmir.jpg"
+        imageAlt="Snow-covered Himalayan peaks rising above a valley in Kashmir"
       />
 
       <Suspense fallback={<ExplorerFallback />}>
@@ -96,7 +96,7 @@ export default function DestinationsPage() {
 
         <div className="mt-10 pb-16 md:pb-24">
           <HorizontalScroll>
-            {destinations.slice(0, 10).map((d, i) => (
+            {indiaDestinations.map((d, i) => (
               <DestinationSlide key={d.slug} destination={d} index={i} />
             ))}
           </HorizontalScroll>

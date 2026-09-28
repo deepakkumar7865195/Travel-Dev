@@ -3,7 +3,7 @@ import { Instagram, Linkedin, Youtube, Twitter, Phone, Mail, MapPin } from "luci
 import { Logo } from "@/components/ui/Logo";
 import Newsletter from "./Newsletter";
 import { navLinks, siteConfig } from "@/lib/site";
-import { destinations } from "@/lib/data/destinations";
+import { featuredDestinations } from "@/lib/data/destinations";
 import { experiences } from "@/lib/data/experiences";
 
 const socialIcons = {
@@ -15,7 +15,7 @@ const socialIcons = {
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const topDestinations = destinations.filter((d) => d.featured).slice(0, 5);
+  const topDestinations = featuredDestinations.slice(0, 5);
 
   return (
     <footer className="grain relative isolate overflow-hidden bg-navy-950 text-white">

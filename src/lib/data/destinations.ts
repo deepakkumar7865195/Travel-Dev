@@ -74,6 +74,7 @@ export const destinations: Destination[] = [
     reviews: 501,
     duration: "4 Days / 3 Nights",
     blurb: "Sunrise beach runs, Portuguese lanes and shack-side seafood dinners.",
+    featured: true,
   },
   {
     slug: "darjeeling",
@@ -105,6 +106,7 @@ export const destinations: Destination[] = [
     reviews: 233,
     duration: "6 Days / 5 Nights",
     blurb: "Monastery trails, Tsomgo glacial waters and clouds that swim past you.",
+    featured: true,
   },
   {
     slug: "agra",
@@ -388,6 +390,6 @@ export function getDestination(slug: string) {
   return destinations.find((d) => d.slug === slug);
 }
 
-export const featuredDestinations = destinations.filter((d) => d.featured);
-
 export const indiaDestinations = destinations.filter((d) => d.country.endsWith("India"));
+
+export const featuredDestinations = indiaDestinations.filter((d) => d.featured);
