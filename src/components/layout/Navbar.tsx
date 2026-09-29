@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll } from "framer-motion";
@@ -18,6 +18,7 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const lastY = useRef(0);
+  const closeMenu = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
     setScrolled(scrollY.get() > 24);
@@ -106,14 +107,15 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <CTAButton
-              href="/contact"
-              size="sm"
-              variant={scrolled ? "primary" : "glass"}
-              className="hidden md:inline-flex"
-            >
-              Plan Your Trip
-            </CTAButton>
+            <div className="hidden md:block">
+              <CTAButton
+                href="/contact"
+                size="sm"
+                variant={scrolled ? "primary" : "glass"}
+              >
+                Plan Your Trip
+              </CTAButton>
+            </div>
 
             <button
               type="button"
@@ -133,7 +135,7 @@ export default function Navbar() {
         </div>
       </motion.header>
 
-      <MobileMenu open={open} onClose={() => setOpen(false)} />
+      <MobileMenu open={open} onClose={closeMenu} />
     </>
   );
 }

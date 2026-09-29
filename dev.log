@@ -1,0 +1,36 @@
+
+> travel-dev@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.5.26
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.51:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.8s
+ ○ Compiling /destinations ...
+ ✓ Compiled /destinations in 22.2s (1646 modules)
+Image with src "/images/dest-kashmir.jpg" is using quality "78" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET /destinations 200 in 25048ms
+ GET /destinations 200 in 1060ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.6s (1670 modules)
+Image with src "/images/hero.jpg" is using quality "80" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+Image with src "/images/pkg-kashmir.jpg" is using quality "78" which is not configured in images.qualities. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET / 200 in 6094ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.5.26
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.51:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 5s
+ ○ Compiling / ...
+ ✓ Compiled / in 6s (1652 modules)
+ GET / 200 in 9427ms
+ GET / 200 in 1244ms
