@@ -56,8 +56,11 @@ export default function HorizontalScroll({
     };
   }, [enabled, scrollLength]);
 
+  // The pinned layout only renders `sectionRef` once `enabled` — tracking it
+  // while the fallback row is up would leave useScroll waiting for a ref that
+  // is never attached.
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: enabled ? sectionRef : undefined,
     offset: ["start start", "end end"],
   });
   const x = useTransform(scrollYProgress, [0, 1], [0, -travel]);

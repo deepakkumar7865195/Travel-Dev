@@ -60,7 +60,7 @@ export default function PackageDetail({ pkg, className, onClose, priority }: Pro
   return (
     <article
       id={pkg.slug}
-      className={`overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-soft ${
+      className={`scroll-mt-24 overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-soft ${
         className ?? ""
       }`}
     >

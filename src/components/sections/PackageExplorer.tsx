@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X, GitCompareArrows, Check } from "lucide-react";
 import PackageCard from "@/components/cards/PackageCard";
@@ -46,26 +46,93 @@ export default function PackageExplorer() {
   const [panelOpen, setPanelOpen] = useState(false);
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
 
-  const scrollToDetail = () => {
-    window.requestAnimationFrame(() => {
-      document.getElementById("package-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  };
+  // Scroll to the inline detail. Lenis owns the scroll when it is active, so
+  // a native scrollIntoView would fight it — and Lenis already honours the
+  // container's `scroll-mt-24`, keeping the detail clear of the fixed navbar.
+  const scrollToDetail = useCallback(() => {
+    const toDetail = () => {
+      const el = document.getElementById("package-detail");
+      if (!el) return;
+      const lenis = window.__lenis;
+      if (lenis) {
+        lenis.scrollTo(el);
+        return;
+      }
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+    };
+    window.requestAnimationFrame(toDetail);
+    // A webfont swap can shift the layout after the first pass — re-target
+    // once fonts have settled so the detail doesn't land off-position.
+    if (document.fonts && document.fonts.status !== "loaded") {
+      document.fonts.ready.then(() => window.requestAnimationFrame(toDetail));
+    }
+  }, []);
+
+  // Single entry point for opening a package inline on this page: state,
+  // URL hash and scroll all happen here exactly once per click.
+  const openPackage = useCallback(
+    (slug: string) => {
+      if (!packages.some((p) => p.slug === slug)) return;
+      setActiveSlug(slug);
+      if (window.location.hash !== `#${slug}`) {
+        // Next.js marks router-owned history entries with `__NA`; an entry
+        // without it triggers a full reload when the user goes back. Make sure
+        // the current entry carries the marker (and router tree) first, then
+        // push — the patched pushState copies them and syncs the router state.
+        const current = window.history.state;
+        if (!current?.__NA) window.history.replaceState({ ...current, __NA: true }, "");
+        window.history.pushState(null, "", `#${slug}`);
+      }
+      scrollToDetail();
+    },
+    [scrollToDetail]
+  );
 
   useEffect(() => {
-    const syncHash = (scroll: boolean) => {
+    const syncHash = () => {
       const slug = decodeURIComponent(window.location.hash.replace("#", ""));
       const match = packages.find((p) => p.slug === slug);
-      setActiveSlug(match ? match.slug : null);
-      if (match && scroll) scrollToDetail();
+      if (match) openPackage(match.slug);
+      else setActiveSlug(null);
     };
 
-    const onHash = () => syncHash(true);
+    // Capture phase: the detail opens inline on this page, so take the click
+    // before Next's Link runs — its hash jump would race our scroll and land
+    // the detail underneath the fixed navbar (most noticeable on mobile).
+    const onClick = (event: MouseEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      const link = event
+        .composedPath()
+        .find((node): node is HTMLAnchorElement => node instanceof HTMLAnchorElement && !!node.href);
+      if (!link) return;
+      const url = new URL(link.href);
+      if (url.host !== window.location.host || url.pathname !== window.location.pathname || !url.hash)
+        return;
+      const slug = decodeURIComponent(url.hash.slice(1));
+      if (!packages.some((p) => p.slug === slug)) return;
+      event.preventDefault();
+      openPackage(slug);
+    };
 
-    syncHash(true);
-    window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
-  }, []);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    window.addEventListener("popstate", syncHash);
+    document.addEventListener("click", onClick, true);
+    return () => {
+      window.removeEventListener("hashchange", syncHash);
+      window.removeEventListener("popstate", syncHash);
+      document.removeEventListener("click", onClick, true);
+    };
+  }, [openPackage]);
 
   const active = activeSlug ? packages.find((p) => p.slug === activeSlug) ?? null : null;
 
@@ -232,10 +299,7 @@ export default function PackageExplorer() {
               pkg={p}
               onCompare={toggleCompare}
               compared={compare.includes(p.slug)}
-              onOpen={(slug) => {
-                setActiveSlug(slug);
-                scrollToDetail();
-              }}
+              onOpen={openPackage}
             />
           ))}
         </AnimatePresence>

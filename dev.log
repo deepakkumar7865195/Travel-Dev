@@ -34,3 +34,40 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
  ✓ Compiled / in 6s (1652 modules)
  GET / 200 in 9427ms
  GET / 200 in 1244ms
+ GET / 200 in 1349ms
+ ○ Compiling /blog ...
+ ✓ Compiled /blog in 3s (1669 modules)
+ GET /blog 200 in 3530ms
+ GET /blog 200 in 253ms
+ ○ Compiling /destinations ...
+ ✓ Compiled /destinations in 1393ms (1691 modules)
+ GET /destinations 200 in 1650ms
+ ○ Compiling /packages ...
+ ✓ Compiled /packages in 1916ms (1703 modules)
+ GET /packages 200 in 2220ms
+ GET /packages 200 in 91ms
+ GET /packages 200 in 103ms
+ GET /packages 200 in 151ms
+ GET /packages 200 in 106ms
+ GET /packages 200 in 80ms
+ GET /packages 200 in 107ms
+ ○ Compiling /contact ...
+ ✓ Compiled /contact in 1902ms (1718 modules)
+ GET /contact 200 in 2212ms
+ GET /packages 200 in 137ms
+ GET / 200 in 2434ms
+ ○ Compiling /icon.png ...
+ ✓ Compiled /icon.png in 3.6s (1002 modules)
+ GET /icon.png 200 in 4537ms
+ GET /packages 200 in 2327ms
+ ✓ Compiled in 3.7s (1732 modules)
+ ✓ Compiled in 3.5s (1732 modules)
+ ✓ Compiled in 2.4s (1732 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\DEEPAK VERMA\Desktop\Travel Dev\.next\cache\webpack\server-development\1.pack.gz_' -> 'C:\Users\DEEPAK VERMA\Desktop\Travel Dev\.next\cache\webpack\server-development\1.pack.gz'
+ GET / 200 in 4319ms
+ ○ Compiling /experiences ...
+ ✓ Compiled /experiences in 11.8s (1745 modules)
+ GET /packages 200 in 5660ms
+ GET /experiences 200 in 12538ms
+ GET /packages 200 in 65ms
+ GET /packages 200 in 35ms

@@ -33,3 +33,24 @@ yarn-error.log*
 # editor
 .vscode/
 .idea/
+
+# Dependencies
+/node_modules
+
+# Next.js build output
+/.next/
+/out/
+
+# Production build
+/build
+
+# Local env files
+.env.local
+.env*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Cache
+.cache/

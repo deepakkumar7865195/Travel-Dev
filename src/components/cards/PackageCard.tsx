@@ -26,7 +26,8 @@ export default function PackageCard({
     <motion.article
       layout
       variants={cardIn}
-      className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-soft transition-shadow duration-500 hover:shadow-lift"
+      onClick={() => onOpen?.(pkg.slug)}
+      className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[1.75rem] bg-white shadow-soft transition-shadow duration-500 hover:shadow-lift"
     >
       <div className="relative aspect-[16/11] overflow-hidden">
         <Image
@@ -103,7 +104,10 @@ export default function PackageCard({
             {onCompare && (
               <button
                 type="button"
-                onClick={() => onCompare(pkg.slug)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onCompare(pkg.slug);
+                }}
                 aria-pressed={compared}
                 className={cn(
                   "grid h-10 w-10 place-items-center rounded-full border transition",
