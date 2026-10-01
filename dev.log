@@ -86,3 +86,9 @@
  GET /contact 200 in 1432ms
  ✓ Compiled in 1170ms (1778 modules)
  GET /contact 200 in 207ms
+ ✓ Compiled in 645ms (1778 modules)
+ GET /contact 200 in 188ms
+ GET /contact 200 in 1451ms
+ GET /contact 200 in 1066ms
+ GET / 200 in 307ms
+ GET /packages 200 in 178ms
