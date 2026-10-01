@@ -7,3 +7,10 @@
  ✓ Ready in 2.4s
  ○ Compiling /gallery ...
  ✓ Compiled /gallery in 7s (1611 modules)
+ GET /gallery 200 in 10398ms
+ ○ Compiling / ...
+ ✓ Compiled / in 6.8s (1686 modules)
+ GET / 200 in 10420ms
+ GET /gallery 200 in 224ms
+ GET / 200 in 1993ms
+ GET /gallery 200 in 340ms
