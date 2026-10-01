@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Clock, MapPin, ArrowUpRight } from "lucide-react";
+import { MapPin, ArrowUpRight } from "lucide-react";
 import RatingStars from "@/components/ui/RatingStars";
 import TiltCard from "@/components/ui/TiltCard";
 import { cardIn } from "@/lib/motion";
-import { formatINR, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import type { Destination } from "@/lib/types";
 
 export default function DestinationCard({
@@ -84,33 +84,6 @@ export default function DestinationCard({
 
           <div className={cn("flex flex-1 flex-col p-5", isList && "md:justify-center md:p-8")}>
             <p className="text-[0.9rem] leading-relaxed text-navy/65">{destination.blurb}</p>
-
-            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.78rem] font-medium text-navy/55">
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5 text-azure-500" strokeWidth={1.8} />
-                {destination.bestTime}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-1 w-1 rounded-full bg-flare" />
-                {destination.duration}
-              </span>
-            </div>
-
-            <div className="mt-5 flex items-end justify-between gap-4 border-t border-navy/10 pt-4">
-              <div>
-                <span className="block text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-navy/45">
-                  From
-                </span>
-                <span className="font-display text-xl font-extrabold text-navy">
-                  {formatINR(destination.price)}
-                </span>
-                <span className="text-xs text-navy/50"> / person</span>
-              </div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-cloud-100 px-4 py-2 text-[0.78rem] font-semibold text-navy transition-colors duration-300 group-hover:bg-navy group-hover:text-white">
-                Explore
-                <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
-              </span>
-            </div>
           </div>
         </Link>
       </TiltCard>

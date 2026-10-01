@@ -1,16 +1,88 @@
+
+> travel-dev@1.0.0 dev
+> next dev
+
    ▲ Next.js 15.5.26
    - Local:        http://localhost:3000
-   - Network:      http://192.168.1.51:3000
+   - Network:      http://10.226.155.194:3000
    - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 2.4s
+ ✓ Ready in 4.8s
  ○ Compiling /gallery ...
- ✓ Compiled /gallery in 7s (1611 modules)
- GET /gallery 200 in 10398ms
+ ✓ Compiled /gallery in 29s (1643 modules)
  ○ Compiling / ...
- ✓ Compiled / in 6.8s (1686 modules)
- GET / 200 in 10420ms
- GET /gallery 200 in 224ms
- GET / 200 in 1993ms
- GET /gallery 200 in 340ms
+ GET /gallery 200 in 37184ms
+ ✓ Compiled / in 12.9s (1697 modules)
+ GET / 200 in 16147ms
+ GET / 200 in 2431ms
+ GET /gallery 200 in 966ms
+ GET / 200 in 223ms
+ ○ Compiling /destinations ...
+ ✓ Compiled /destinations in 5.2s (1724 modules)
+ GET /destinations 200 in 7562ms
+ ○ Compiling /experiences ...
+ ✓ Compiled /experiences in 1116ms (1737 modules)
+ GET /experiences 200 in 1432ms
+ ○ Compiling /packages ...
+ ✓ Compiled /packages in 3.7s (1749 modules)
+ GET /packages 200 in 6988ms
+ GET /experiences 200 in 374ms
+ ○ Compiling /blog ...
+ ✓ Compiled /blog in 1636ms (1759 modules)
+ GET /blog 200 in 2363ms
+ ○ Compiling /about ...
+ ✓ Compiled /about in 946ms (1780 modules)
+ GET /about 200 in 1445ms
+ ○ Compiling /contact ...
+ ✓ Compiled /contact in 681ms (1795 modules)
+ GET /contact 200 in 1061ms
+ GET /experiences 200 in 943ms
+ GET / 200 in 302ms
+ GET /packages 200 in 227ms
+ GET /contact 200 in 211ms
+ GET /destinations 200 in 242ms
+ GET /about 200 in 242ms
+ GET /contact 200 in 118ms
+ GET / 200 in 208ms
+ GET / 200 in 2543ms
+ ✓ Compiled in 1233ms (775 modules)
+ GET / 200 in 126ms
+ GET / 200 in 2449ms
+ ✓ Compiled in 11.6s (1762 modules)
+ ○ Compiling /gallery ...
+ ✓ Compiled /gallery in 8.8s (1012 modules)
+ GET /gallery 200 in 14438ms
+ GET /gallery 200 in 797ms
+ GET / 200 in 15018ms
+ GET / 200 in 497ms
+ ✓ Compiled in 2.6s (1778 modules)
+ GET / 200 in 443ms
+ GET / 200 in 3720ms
+ GET / 200 in 15598ms
+ GET / 200 in 7390ms
+ ✓ Compiled in 1129ms (1778 modules)
+ GET / 200 in 281ms
+ GET / 200 in 2982ms
+ ✓ Compiled in 2.6s (1778 modules)
+ GET / 200 in 960ms
+ GET / 200 in 2330ms
+ ✓ Compiled in 1491ms (1778 modules)
+ GET / 200 in 203ms
+ GET / 200 in 2478ms
+ GET / 200 in 3583ms
+ GET /contact 200 in 276ms
+ GET / 200 in 2359ms
+ ✓ Compiled in 1121ms (1778 modules)
+ GET /contact 200 in 163ms
+ ✓ Compiled in 2s (1778 modules)
+ GET /contact 200 in 579ms
+ GET /contact 200 in 1801ms
+ GET /contact 200 in 570ms
+ ✓ Compiled in 1019ms (1778 modules)
+ GET /contact 200 in 219ms
+ ✓ Compiled in 707ms (1778 modules)
+ GET /contact 200 in 189ms
+ GET /contact 200 in 1432ms
+ ✓ Compiled in 1170ms (1778 modules)
+ GET /contact 200 in 207ms

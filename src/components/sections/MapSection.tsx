@@ -2,11 +2,11 @@ import { MapPin, Navigation, Clock } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import { siteConfig } from "@/lib/site";
 
-const lat = 22.6059;
-const lon = 88.4111;
-const bbox = `88.4011,22.5999,88.4211,22.6119`;
-const embed = `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${lat}%2C${lon}`;
-const directions = `https://www.openstreetmap.org/directions?from=&to=${lat}%2C${lon}`;
+/** Canonical Google Maps listing shared by the client. */
+const mapLink = "https://maps.app.goo.gl/egUKQLukqRfwrUre7";
+const embed =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.088466083736!2d88.4310644!3d22.613171400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89f640e3bd92b%3A0x6522c32e04efc103!2sTraveldev!5e0!3m2!1sen!2sin!4v1790882481113!5m2!1sen!2sin";
+const directions = "https://maps.app.goo.gl/G2r2hw5VRXkJ8Nn89";
 
 export default function MapSection() {
   return (
@@ -85,7 +85,7 @@ export default function MapSection() {
                 title="TRAVEL DEV office location map"
                 src={embed}
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="strict-origin-when-cross-origin"
                 className="absolute inset-0 h-full w-full border-0 grayscale-[0.25] contrast-[1.05]"
               />
 
@@ -101,9 +101,14 @@ export default function MapSection() {
             <div className="glass absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4 md:right-auto md:max-w-sm">
               <span>
                 <span className="block text-sm font-bold text-navy">TRAVEL DEV HQ</span>
-                <span className="block text-xs text-navy/55">
-                  {siteConfig.address.city} · {siteConfig.address.postal}
-                </span>
+                <a
+                  href={mapLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="block text-xs text-navy/55 underline-offset-2 transition hover:text-azure-600 hover:underline"
+                >
+                  {siteConfig.address.city} · {siteConfig.address.postal} · View on Google Maps
+                </a>
               </span>
               <a
                 href={`mailto:${siteConfig.email}`}

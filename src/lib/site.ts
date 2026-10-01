@@ -13,7 +13,7 @@ export const siteConfig = {
     { label: "8272956267", href: "+918272956267" },
   ],
   address: {
-    line1: "Mohana Apartment, Gouri Nath Shastri Sarani",
+    line1: "Mohana Apartment, Holding No. 235, Gouri Nath Shastri Sarani",
     city: "Kolkata",
     region: "West Bengal",
     postal: "700055",

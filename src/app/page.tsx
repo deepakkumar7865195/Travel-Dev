@@ -6,6 +6,7 @@ import FeaturedPackages from "@/components/sections/FeaturedPackages";
 import WhyBand from "@/components/sections/WhyBand";
 import ExperiencePreview from "@/components/sections/ExperiencePreview";
 import Testimonials from "@/components/sections/Testimonials";
+import HomeGallery from "@/components/sections/HomeGallery";
 import CTABand from "@/components/sections/CTABand";
 import { destinations } from "@/lib/data/destinations";
 
@@ -35,6 +36,7 @@ export default function HomePage() {
       <FeaturedPackages />
       <WhyBand />
       <ExperiencePreview />
+      <HomeGallery />
       <Testimonials />
       <CTABand />
     </>
