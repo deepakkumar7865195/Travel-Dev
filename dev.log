@@ -97,3 +97,4 @@
  GET /packages 404 in 8703ms
  GET / 200 in 427ms
  ✓ Compiled in 11.3s (1779 modules)
+ ✓ Compiled in 1047ms (1779 modules)
