@@ -30,6 +30,7 @@ export const navLinks = [
   { label: "Destinations", href: "/destinations" },
   { label: "Packages", href: "/packages" },
   { label: "Experiences", href: "/experiences" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
