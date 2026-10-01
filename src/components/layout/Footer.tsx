@@ -122,9 +122,22 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-7 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {year} {siteConfig.legalName}. All rights reserved.
-          </p>
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
+            <p>
+              © {year} {siteConfig.legalName}. All rights reserved.
+            </p>
+            <p>
+              Designed by{" "}
+              <a
+                href="https://marketadigitalit.vercel.app"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-white/70 underline-offset-4 transition-colors hover:text-white hover:underline"
+              >
+                Marketa Digital IT
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-6">
             <span className="tracking-[0.3em] uppercase text-white/60">
               Let&apos;s <span className="text-flare-400">Go</span>

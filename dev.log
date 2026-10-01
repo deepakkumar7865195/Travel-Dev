@@ -92,3 +92,8 @@
  GET /contact 200 in 1066ms
  GET / 200 in 307ms
  GET /packages 200 in 178ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 5.9s (1782 modules)
+ GET /packages 404 in 8703ms
+ GET / 200 in 427ms
+ ✓ Compiled in 11.3s (1779 modules)
