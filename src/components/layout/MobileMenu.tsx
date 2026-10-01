@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -19,13 +19,49 @@ const socials = siteConfig.socials.map((s) => ({
 
 export default function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const pathname = usePathname();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const restoreRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    restoreRef.current = document.activeElement as HTMLElement | null;
+    const t = window.setTimeout(() => closeRef.current?.focus(), 40);
+    return () => window.clearTimeout(t);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      // aria-modal is only honest if Tab stays inside the panel.
+      if (e.key !== "Tab") return;
+      const focusables = panelRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
+
+  useEffect(() => {
+    if (open) return;
+    restoreRef.current?.focus?.();
+    restoreRef.current = null;
+  }, [open]);
 
   useEffect(() => onClose(), [pathname, onClose]);
 
@@ -44,10 +80,11 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
         >
           <div className="grain absolute inset-0 bg-navy-950" />
 
-          <div className="relative flex h-full flex-col">
+          <div className="relative flex h-full flex-col" ref={panelRef}>
             <div className="flex h-[72px] shrink-0 items-center justify-between px-5 md:h-[84px]">
               <Logo markClassName="h-8" showTagline className="text-white" />
               <button
+                ref={closeRef}
                 type="button"
                 onClick={onClose}
                 aria-label="Close menu"

@@ -63,6 +63,8 @@ export default function Newsletter() {
             </button>
             {error && (
               <motion.p
+                role="alert"
+                aria-live="polite"
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="absolute -bottom-6 left-4 text-xs text-flare-400"

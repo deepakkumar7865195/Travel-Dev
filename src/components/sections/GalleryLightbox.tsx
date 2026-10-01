@@ -25,6 +25,8 @@ export default function Lightbox({
   const open = index !== null;
   const photo = open ? photos[index] : null;
   const closeRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const restoreRef = useRef<HTMLElement | null>(null);
 
   const handleKey = useCallback(
     (e: KeyboardEvent) => {
@@ -52,6 +54,23 @@ export default function Lightbox({
           e.preventDefault();
           onJump(photos.length - 1);
           break;
+        case "Tab": {
+          // Keep Tab inside the dialog while it owns the screen.
+          const focusables = panelRef.current?.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          );
+          if (!focusables || focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+          break;
+        }
         default:
           break;
       }
@@ -67,6 +86,7 @@ export default function Lightbox({
 
   useEffect(() => {
     if (!open) return;
+    restoreRef.current = document.activeElement as HTMLElement | null;
     const { body } = document;
     const prevOverflow = body.style.overflow;
     const prevPadding = body.style.paddingRight;
@@ -80,6 +100,8 @@ export default function Lightbox({
       body.style.paddingRight = prevPadding;
       window.__lenis?.start();
       window.clearTimeout(t);
+      restoreRef.current?.focus?.();
+      restoreRef.current = null;
     };
   }, [open]);
 
@@ -87,6 +109,7 @@ export default function Lightbox({
     <AnimatePresence>
       {open && photo && (
         <motion.div
+          ref={panelRef}
           className="fixed inset-0 z-[120] flex flex-col bg-navy-950/96 backdrop-blur-xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
