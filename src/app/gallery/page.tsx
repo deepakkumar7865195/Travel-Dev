@@ -5,13 +5,13 @@ import FeaturedCollections from "@/components/sections/FeaturedCollections";
 import TravelerMemories from "@/components/sections/TravelerMemories";
 import InstagramGrid from "@/components/sections/InstagramGrid";
 import GalleryCTA from "@/components/sections/GalleryCTA";
-import { galleryPhotos, photosByCategory } from "@/lib/data/gallery";
+import { galleryCategories, galleryPhotos, photosByCategory } from "@/lib/data/gallery";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Travel Gallery — Every Journey Tells a Story",
-  description:
-    "Browse traveller-shot photographs from Darjeeling, Goa, Rajasthan, Kerala and beyond. Filter by mountains, beaches, wildlife, culture, adventure or city escapes, then open any frame full-screen.",
+    description:
+      "Browse traveller-shot photographs from Darjeeling and beyond. Filter by mountains, culture or adventure, then open any frame full-screen.",
   alternates: { canonical: "/gallery" },
   openGraph: {
     title: "Travel Gallery | TRAVEL DEV",
@@ -36,18 +36,18 @@ export default function GalleryPage() {
     name: "TRAVEL DEV Photo Gallery",
     url: `${siteConfig.url}/gallery`,
     description:
-      "Photographs from trips designed by TRAVEL DEV — mountains, beaches, wildlife, culture, adventure and city escapes.",
+      "Photographs from trips designed by TRAVEL DEV — mountains, culture and adventure.",
     about: {
       "@type": "ItemList",
       name: "Travel gallery categories",
-      itemListElement: (
-        ["Mountains", "Beaches", "Wildlife", "Culture", "Adventure", "City Escapes"] as const
-      ).map((c, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        name: c,
-        url: `${siteConfig.url}/gallery#gallery-grid`,
-      })),
+      itemListElement: galleryCategories
+        .filter((c) => c !== "All")
+        .map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: c,
+          url: `${siteConfig.url}/gallery#gallery-grid`,
+        })),
     },
     hasPart: galleryPhotos.slice(0, 12).map((p) => ({
       "@type": "ImageObject",
@@ -80,7 +80,8 @@ export default function GalleryPage() {
 
       <p className="sr-only">
         The gallery currently holds {galleryPhotos.length} photographs across{" "}
-        {(["Mountains", "Beaches", "Wildlife", "Culture", "Adventure", "City Escapes"] as const)
+        {galleryCategories
+          .filter((c) => c !== "All")
           .map((c) => `${c} (${photosByCategory(c).length})`)
           .join(", ")}{" "}
         categories.

@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Loader2, ArrowRight } from "lucide-react";
 import { indiaDestinations } from "@/lib/data/destinations";
+import { packages } from "@/lib/data/packages";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -180,11 +181,20 @@ export default function ContactForm() {
               <Field label="Destination">
                 <select value={values.destination} onChange={set("destination")} className={cn(fieldClass, "cursor-pointer")}>
                   <option value="">Not decided yet</option>
-                  {indiaDestinations.map((d) => (
-                    <option key={d.slug} value={d.name}>
-                      {d.name}
-                    </option>
-                  ))}
+                  <optgroup label="Destinations">
+                    {indiaDestinations.map((d) => (
+                      <option key={d.slug} value={d.name}>
+                        {d.name}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Packages">
+                    {packages.map((p) => (
+                      <option key={p.slug} value={p.title}>
+                        {p.title} ({p.days}D/{p.nights}N)
+                      </option>
+                    ))}
+                  </optgroup>
                 </select>
               </Field>
 

@@ -9,14 +9,14 @@ import WordReveal from "@/components/ui/WordReveal";
 import Reveal from "@/components/ui/Reveal";
 import CTAButton from "@/components/ui/CTAButton";
 import FlightPath from "@/components/ui/FlightPath";
-import { destinations } from "@/lib/data/destinations";
+import { packages } from "@/lib/data/packages";
 import { formatINR } from "@/lib/utils";
 import { EASE_OUT } from "@/lib/motion";
 
 const floating = [
-  { slug: "greece", className: "right-6 top-[19%] w-[210px]", delay: 1.15 },
-  { slug: "kashmir", className: "right-14 top-[46%] w-[186px]", delay: 1.35 },
-  { slug: "maldives", className: "right-8 bottom-[14%] w-[198px]", delay: 1.55 },
+  { slug: "kolkata-to-kashmir", className: "right-6 top-[19%] w-[210px]", delay: 1.15 },
+  { slug: "bali-ubud-kuta-nusa-penida", className: "right-14 top-[46%] w-[186px]", delay: 1.35 },
+  { slug: "japan-tokyo-fuji-kyoto-osaka", className: "right-8 bottom-[14%] w-[198px]", delay: 1.55 },
 ];
 
 export default function Hero() {
@@ -119,7 +119,7 @@ export default function Hero() {
 
         {/* floating destination cards */}
         {floating.map((f) => {
-          const d = destinations.find((x) => x.slug === f.slug)!;
+          const p = packages.find((x) => x.slug === f.slug)!;
           return (
             <motion.div
               key={f.slug}
@@ -135,7 +135,7 @@ export default function Hero() {
               >
                 <span className="relative block h-14 w-14 shrink-0 overflow-hidden rounded-xl">
                   <Image
-                    src={d.image}
+                    src={p.image}
                     alt=""
                     fill
                     sizes="56px"
@@ -144,11 +144,11 @@ export default function Hero() {
                 </span>
                 <span className="min-w-0">
                   <span className="block truncate text-[0.9rem] font-semibold text-white">
-                    {d.name}
+                    {p.title}
                   </span>
-                  <span className="block truncate text-[0.7rem] text-white/55">{d.country}</span>
+                  <span className="block truncate text-[0.7rem] text-white/55">{p.route}</span>
                   <span className="mt-1 block text-[0.78rem] font-bold text-flare-400">
-                    from {formatINR(d.price)}
+                    from {formatINR(p.price)}
                   </span>
                 </span>
               </motion.div>

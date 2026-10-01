@@ -235,7 +235,7 @@ export default function GalleryHero() {
               transition={{ duration: 0.9, delay: 0.42 }}
             >
               {[
-                { k: "Frames", v: "1,200+" },
+                { k: "Frames", v: `${galleryPhotos.length}` },
                 { k: "Routes", v: "38" },
                 { k: "Contributors", v: "96" },
               ].map((s) => (
